@@ -1,2 +1,3 @@
-# netcore.simple-doc-website
-Documentation code for netcore.simple libraries
+# netcore.simple documentation website
+
+This is the source code for http://netcoresimple.nevillenazerane.com
