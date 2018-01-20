@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Heading = "Setting up a basic editor";
+    ViewBag.Title = "Editor";
+}
+
+<p>
+    Find the demo project in <a href="https://github.com/neville-nazerane/NetCore.Simple.demo">
+        https://github.com/neville-nazerane/NetCore.Simple.demo
+    </a>
+</p>
+
+<p>
+    The easiest way to take advantage of the built in editor is by first creating a model
+    that implements the <b>IBasicModel</b> interface. This interfact consists of four basic
+    straight forward functions for add, update, get and delete. The model can also contain all
+    required validation attributes that will be used by the editor.
+</p>
+
+<p>
+    Once this model with the functions implemented, this model can be used to create a controller that
+    extends the <b>BasicController</b>. The following example for a model <b>Person</b>
+</p>
+
+<pre><code class="cs">public class PersonController : BasicController<Person>
+{
+    
+}
+</code></pre>
+
+<p>
+    The above class creates the complete controller required for the add, update and delete functionalities.
+    Although this class does not require a body and will still have full functionality, all four actions of
+    this controller can be overridden if needed.
+</p>
+
+<p>
+    Once the controller is created, a view for the editor can now be created. By default the main view that
+    will be used would be a view named <b>Index.cshtml</b> inside the folder of the controller (in this example
+    inside  a folder named "person"). If you would like to have a different name for your file for any reason,
+    your custom file name needs to be provided to the controller as follows:
+</p>
+
+<pre><code class="cs">public class PersonController : BasicController<Person>
+{
+    public PersonController(){
+        ViewName = "myCustomName";
+    }
+}
+</code></pre>
+
+<p>
+    Before creating the main view, you will need to set up a partial view that would contain the template for the
+    editor. This template would mainly use the editorLayout and include the text fields required.
+</p>
+
+<pre><code class="cs">
+@@{ 
+    Layout = "netcore.simple/_editorLayout";
+    var i = Html.GetInputGenerator<Person>(); 
+}
+
+@@i.Make(p => p.FirstName)
+
+@@i.Make(p => p.LastName)
+</code></pre>
+
+<p>
+    The first line sets the editor layout as the default layout. Then a variable <b>i</b> is created that acts as an
+    input generator for the Person object. The next two lines of codes are simply using the input generator to
+    generate strongly typed input fields.
+</p>
+
+<p>
+    Once the editor partial view is created, the main view can now be created with <b>NetCore.Simple.Models.Editor</b> set as its model type.
+    Now this view can render the editor partial view and by passing on the model. Now the main view (Index.cshtml by default)
+    will have a function as follows
+</p>
+
+<pre><code class="cs">
+@@model NetCore.Simple.Models.Editor
+
+@@Html.Partial("PersonEditor", Model)
+</code></pre>
+
+<p>
+    Now you can add onto this view any more information you prefer including the list of enteries. Check the git repository for a complete example
+    on the Index.cshtml file. For updating a record, the url would be "http://domain/controller?id=123". In this example, it would
+    be "http://domain/person?id=123". The parameter(s) "id=123" can be anything based on your model. These parameters would contain the
+    unique data that is required by the Get() function in the model to fetch the record data. Here is an example of how the url redirect could
+    be set up.
+</p>
+
+<pre><code class="cs">
+@@foreach (var p in Person.GetAll())
+    {
+        &lt;tr>
+            &lt;td>&lt;a href="~/Person/@@p.ID">@@p.ID&lt;/a>&lt;/td>
+            &lt;td>@@p.FirstName&lt;/td>
+            &lt;td>@@p.LastName&lt;/td>
+        &lt;/tr>
+    }
+</code></pre>
+
+<p>
+    This url redirects to the default view and populates the current entrie's data into the respective input fields. 
+</p>

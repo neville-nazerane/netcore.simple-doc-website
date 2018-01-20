@@ -1,0 +1,47 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var active = new ActiveMenu(ViewBag.Tag);
+    string tag = ViewBag.Tag;
+}
+
+@section Scripts
+{    
+    <script src="~/lib/highlight/src/languages/cs.js"></script>
+    <script src="~/lib/highlight/src/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+}
+
+@section Styles
+{ 
+    <link href="~/lib/highlight/src/styles/default.min.css" rel="stylesheet" />
+}
+
+<div class="col-sm-2">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var menu in DocData.Docs)
+        {
+            <li class="@menu.Active[ViewBag.Tag] "><a href="~/@menu.Link">@menu.Display</a></li>
+        }
+    </ul>
+</div>
+
+<div class="col-sm-10">
+
+    <h2 class="doc-head">@ViewBag.Heading</h2>
+
+    @RenderBody()
+
+</div>
+
+
+@*<div id="code-connection">
+    @Html.Partial("_Connection.cshtml")
+</div>
+
+<div id="code-query">
+    @Html.Partial("_Quering.cshtml")
+</div>
+
+<div id="code-functions">
+    @Html.Partial("_Functions.cshtml")
+</div>*@

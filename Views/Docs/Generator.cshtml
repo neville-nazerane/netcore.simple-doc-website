@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Heading = "Using the input generator";
+    ViewBag.Title = "Input generator";
+}
+
+<p>
+    Find the sample usage <a href="https://github.com/neville-nazerane/NetCore.Simple.demo/blob/master/Views/Person/PersonEditor.cshtml">
+        https://github.com/neville-nazerane/NetCore.Simple.demo/blob/master/Views/Person/PersonEditor.cshtml
+    </a>
+</p>
+
+<p>
+    An input generator is an object that helps generate inputs of a model. By default, the model is the model of the
+    page, however a different class can be specified. In order to generate the input, it uses a .cshtml file that
+    contains the template. By default the <i>Views/Shared/netcore.simple/_input.cshtml</i> is used as the template. 
+    However this template path for a generator can be can be modified.
+</p>
+
+<p>
+    Following is how you can create a new generator:
+</p>
+
+<pre><code class="cs">var gen1 = Html.GetInputGenerator(); // creates a generator for the current model of the view
+var gen2 = Html.GetInputGenerator&lt;Person&ge;(); // creates a generator for Person
+</code></pre>
+
+<p>Now, you can use this generator to generate input fields</p>
+
+<pre><code class="cs">@@gen2.Make(p => p.FirstName)
+@@gen2.Make(p => p.LastName)</code></pre>
+
+<p>This generates a label, input field and list of error validation messages based on </p>

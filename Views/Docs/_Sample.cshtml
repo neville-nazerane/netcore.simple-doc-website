@@ -1,0 +1,36 @@
+﻿<h2 class="doc-head">Sample code</h2>
+
+
+<p>
+    The following is a sample code to set up a form and submission using the library.
+</p>
+
+<h4>Your model:</h4>
+<pre><code class="cs">
+    class Employee {
+
+        [MaxLength(40, ErrorMessage = "Name is too long")]
+        [Required]
+        public string Name { get; set; }
+
+        [Display(Name = "Employee title")]
+        [MaxLength(50)]
+        public string Title { get; set; }
+
+    }
+</code></pre>
+
+<h4>Your razor form:</h4>
+<pre><code class="html">
+&lt;form data-form-submit="@@Url.Action("Add")" data-ng-success-url="@@Url.Content("~/completed")"&gt;
+    @@{ var i = Html.getInputMaker&lt;Employee&gt;(); }
+    @@i.Make(m => m.Name)
+    @@i.Make(m => m.Title)
+&lt;/form&gt;
+</code></pre>
+<h4>And finally your controller action:</h4>
+<pre><code class="cs">
+[ValidateModel]
+public IActionResult Add(Employee employee) => employee.Add();
+</code></pre>
+

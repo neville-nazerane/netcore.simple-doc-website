@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - NetCore.Simple</title>
+
+    <link href="~/lib/bootswatch-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">NetCore Simple</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Docs")">Documentation<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach (var menu in DocData.Docs)
+                        {
+                            <li class="@menu.Active[ViewBag.Tag] "><a href="~/@menu.Link">@menu.Display</a></li>
+                        }
+                    </ul>
+                </li>
+                <li><a href="https://www.nuget.org/packages/MySql.Simple/ContactOwners">Contact</a></li>
+                <li><a href="https://fb.com/mysql.simple">Facebook</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-content">
+        @RenderBody()
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootswatch-dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
