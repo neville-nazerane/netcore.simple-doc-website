@@ -5,25 +5,29 @@
 
 
 <p>
-    Nuget package url: 
-        <a target="_blank" href="https://www.nuget.org/packages/NetCore.Simple">https://www.nuget.org/packages/NetCore.Simple</a>
+    Nuget package url:
+    <a target="_blank" href="https://www.nuget.org/packages/NetCore.Simple">https://www.nuget.org/packages/NetCore.Simple</a>
 </p>
 
-<p>Using visual studio you can add the nuget package <b>netcore.simple</b>
-    and the bower <b>netcore-simple</b>. Alternatively you can install with command line as follows</p>
+<p>
+    Using visual studio you can add the nuget package <b>netcore.simple</b>
+    and the bower <b>netcore-simple</b>. Alternatively you can install with command line as follows
+</p>
 
 <pre><code>dotnet add package NetCore.Simple
 
 bower install netcore-simple</code></pre>
 
 <p>
-    Once installed, move the contents inside <i>wwwroot/lib/netcore.simple/View</i> 
-    templates to <i>Views/Shared/Netcore.simple</i>. You can modify the file contents as desired. 
+    Once installed, move the contents inside <i>wwwroot/lib/netcore.simple/View templates</i>
+    templates to <i>Views/Shared/</i>. You can modify the file contents as desired. This folder includes a 
+    _Layout.cshtml file to rewrite the layout with the required changes. If you choose to update the layout 
+    manually, you can do the following.
 </p>
 <p>
-    Next you need to import the css (<i>\wwwroot\lib\NetCore-Simple\css\style.css</i>) and js
-    (<i>\wwwroot\lib\NetCore-Simple\js\scripts.js</i>) files. You will also have to import the 
-    js and css for jQuery, bootstrap and angular. Once all js and css have been added, you can 
+    You need to import the css (<i>\wwwroot\lib\NetCore-Simple\css\style.css</i>) and js
+    (<i>\wwwroot\lib\NetCore-Simple\js\scripts.js</i>) files. You will also have to import the
+    js and css for jQuery, bootstrap and angular. Once all js and css have been added, you can
     create an angular module, lets say "app" which would look something like this:
 </p>
 
