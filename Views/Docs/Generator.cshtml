@@ -12,7 +12,7 @@
 <p>
     An input generator is an object that helps generate inputs of a model. By default, the model is the model of the
     page, however a different class can be specified. In order to generate the input, it uses a .cshtml file that
-    contains the template. By default the <i>Views/Shared/netcore.simple/_input.cshtml</i> is used as the template. 
+    contains the template. By default the <i>Views/Shared/netcore.simple/_input.cshtml</i> is used as the template.
     However this template path for a generator can be can be modified.
 </p>
 
@@ -26,7 +26,7 @@ var gen2 = Html.GetInputGenerator&lt;Person&ge;(); // creates a generator for Pe
 
 <p>Now, you can use this generator to generate input fields</p>
 
-<pre><code class="cs">@@gen2.Make(p => p.FirstName)
+<pre><code class="csharp">@@gen2.Make(p => p.FirstName)
 @@gen2.Make(p => p.LastName)</code></pre>
 
 <p>This generates a label, input field and list of error validation messages based on </p>

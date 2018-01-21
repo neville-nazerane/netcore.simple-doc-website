@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title - NetCore.Simple</title>
-
     <link href="~/lib/bootswatch-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <link href="~/css/site.min.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
@@ -48,10 +48,11 @@
         @RenderBody()
     </div>
 
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootswatch-dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
